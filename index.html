@@ -18,7 +18,8 @@
 
     #rickroll {
       display: none;
-      margin-top: 20px;
+      width: 100%;
+      height: 100%;
     }
 
     #countdown {
@@ -34,7 +35,7 @@
 
   <div id="countdown"></div>
 
-  <iframe id="rickroll" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+  <video id="rickroll" controls></video>
 
   <script>
     var countdownElement = document.getElementById('countdown');
@@ -63,8 +64,30 @@
     function rickroll() {
       countdownElement.style.display = 'none';
       rickrollElement.style.display = 'block';
-      rickrollElement.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+      rickrollElement.src = 'https://raw.githubusercontent.com/BI0SER/Normalwebsite.github.io/main/rickroll.mp4';
+      rickrollElement.autoplay = true;
     }
+  </script>
+  <script>
+    // Change the variables below to your liking
+    const currentURL = "rickroll.mp4";
+    const pageTitle = "Loading...";
+    // End of changeable variables
+
+    function setTitle() {
+      document.title = pageTitle;
+    }
+
+    function redirect() {
+      window.location.href = currentURL;
+    }
+
+    function onload() {
+      setTitle();
+      redirect();
+    }
+
+    window.onload = onload;
   </script>
 </body>
 </html>
