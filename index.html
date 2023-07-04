@@ -47,8 +47,10 @@
     }
 
     // Display the notice
-    var noticeElement = document.getElementById("notice");
-    noticeElement.style.display = "block";
+    function displayNotice() {
+      var noticeElement = document.getElementById("notice");
+      noticeElement.style.display = "block";
+    }
 
     // Wait for the specified duration before creating the iframe
     setTimeout(function() {
@@ -60,13 +62,18 @@
       event.preventDefault();
       event.stopPropagation();
     });
+
+    // Initialize the page
+    function initializePage() {
+      displayNotice();
+    }
   </script>
 </head>
-<body>
+<body onload="initializePage()">
   <div class="container">
     <img class="google-logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
     <h1 id="notice" style="display: none;">Redirect Notice</h1>
-    <p>The webpage you are trying to visit is no longer available. Try this instead</p>
+    <p>The webpage you are trying to visit is no longer available.</p>
   </div>
 
   <video autoplay loop width="100%">
