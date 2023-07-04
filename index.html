@@ -41,7 +41,7 @@
     var countdownDuration = 3; // 3 seconds
 
     // Calculate the total notice duration including the countdown
-    var noticeDuration = (countdownDuration + 1) * 1000; // Convert to milliseconds and add 1 extra second for displaying the notice
+    var noticeDuration = countdownDuration * 1000; // Convert to milliseconds
 
     // Function to handle the creation of the iframe
     function createIframe() {
@@ -52,7 +52,6 @@
       iframe.src = 'rickroll_medium.mp4';
       iframe.allow = 'autoplay; encrypted-media';
       iframe.frameborder = '0';
-      iframe.allowFullscreen = true; // Play video in fullscreen
 
       iframeContainer.appendChild(iframe);
       document.body.innerHTML = '';
@@ -63,19 +62,28 @@
     function displayNotice() {
       var noticeElement = document.getElementById("notice");
       noticeElement.style.display = "block";
-
-      setTimeout(createIframe, countdownDuration * 1000);
     }
 
-    // Wait for the specified duration before displaying the notice and triggering the Rickroll
+    // Update the countdown timer
+    function updateCountdown() {
+      var countdownElement = document.getElementById("countdown");
+      countdownElement.textContent = countdownDuration;
+
+      countdownDuration--;
+
+      if (countdownDuration >= 0) {
+        setTimeout(updateCountdown, 1000);
+      } else {
+        createIframe();
+      }
+    }
+
+    // Wait for the specified duration before displaying the notice and starting the countdown
     function initializePage() {
-      setTimeout(displayNotice, noticeDuration);
-    }
-
-    // Play the video when the play button is clicked
-    function playVideo() {
-      var video = document.getElementById('rickroll-video');
-      video.play();
+      setTimeout(function() {
+        displayNotice();
+        updateCountdown();
+      }, noticeDuration);
     }
   </script>
 </head>
@@ -84,12 +92,12 @@
     <img class="google-logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
     <h1 id="notice" style="display: none;">404 NOT FOUND</h1>
     <p>The webpage was not found redirecting back to Google in <span id="countdown">3</span> seconds.</p>
-    <video id="rickroll-video" autoplay loop width="100%">
+    <video id="rickroll-video" loop width="100%">
       <source src="rickroll_medium.mp4" type="video/mp4" quality="medium">
       <source src="rickroll_medium.webm" type="video/webm" quality="medium">
       <p>Sorry, your browser doesn't support autoplay.</p>
     </video>
-    <button class="play-button" onclick="playVideo()">Play</button>
+    <button class="play-button" onclick="createIframe()">Play</button>
   </div>
 
   <script>
@@ -107,7 +115,7 @@
 
     // Check if the video can play automatically
     document.addEventListener('DOMContentLoaded', function() {
-      var video = document.querySelector('video');
+      var video = document.getElementById('rickroll-video');
       video.oncanplay = function() {
         onload();
       };
