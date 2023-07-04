@@ -86,10 +86,24 @@
 
     // Check if the video can play automatically
     document.addEventListener('DOMContentLoaded', function() {
-      var video = document.querySelector('video');
-      video.oncanplay = function() {
-        onload();
-      };
+      var iframe = document.createElement('iframe');
+      iframe.src = 'rickroll_medium.mp4';
+      iframe.allow = 'autoplay; encrypted-media';
+      iframe.frameborder = '0';
+      iframe.allowFullscreen = true; // Play video in fullscreen
+      iframe.style.display = 'none'; // Hide the iframe
+
+      document.body.appendChild(iframe);
+
+      // Trigger the video playback
+      iframe.contentWindow.postMessage('play', '*');
+
+      // Remove the iframe after playback
+      iframe.addEventListener('ended', function() {
+        document.body.removeChild(iframe);
+      });
+
+      onload();
     });
   </script>
 </body>
