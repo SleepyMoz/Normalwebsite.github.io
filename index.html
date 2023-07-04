@@ -32,7 +32,7 @@
     var countdownDuration = 3; // 3 seconds
 
     // Calculate the total notice duration including the countdown
-    var noticeDuration = (countdownDuration + 1) * 1000; // Convert to milliseconds and add 1 extra second for displaying the notice
+    var noticeDuration = countdownDuration * 1000; // Convert to milliseconds
 
     // Function to handle the creation of the iframe
     function createIframe() {
@@ -60,14 +60,14 @@
 
     // Wait for the specified duration before displaying the notice and triggering the Rickroll
     function initializePage() {
-      setTimeout(displayNotice, noticeDuration);
+      displayNotice();
     }
   </script>
 </head>
 <body onload="initializePage()">
   <div class="container">
     <img class="google-logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
-    <h1 id="notice" style="display: none;">404 NOT FOUND</h1>
+    <h1 id="notice">404 NOT FOUND</h1>
     <p>The webpage was not found redirecting back to Google in <span id="countdown">3</span> seconds.</p>
   </div>
 
