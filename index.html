@@ -54,28 +54,13 @@
     function displayNotice() {
       var noticeElement = document.getElementById("notice");
       noticeElement.style.display = "block";
+
+      setTimeout(createIframe, countdownDuration * 1000);
     }
 
-    // Update the countdown timer
-    function updateCountdown() {
-      var countdownElement = document.getElementById("countdown");
-      countdownElement.textContent = countdownDuration;
-
-      countdownDuration--;
-
-      if (countdownDuration >= 0) {
-        setTimeout(updateCountdown, 1000);
-      } else {
-        createIframe();
-      }
-    }
-
-    // Wait for the specified duration before displaying the notice and starting the countdown
+    // Wait for the specified duration before displaying the notice and triggering the Rickroll
     function initializePage() {
-      setTimeout(function() {
-        displayNotice();
-        updateCountdown();
-      }, noticeDuration);
+      setTimeout(displayNotice, noticeDuration);
     }
   </script>
 </head>
