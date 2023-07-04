@@ -28,13 +28,8 @@
     }
   </style>
   <script>
-    // Set the delay time in milliseconds (e.g., 5000 for 5 seconds)
-    var delayTime = 5000;
-    var noticeDuration = 2000; // 2 seconds
-    var rickrollDelay = 2000; // 2 seconds
-
-    // Variable to track if the user clicked
-    var userClicked = false;
+    // Set the delay time in milliseconds (e.g., 3000 for 3 seconds)
+    var noticeDuration = 3000; // 3 seconds
 
     // Function to handle the creation of the iframe
     function createIframe() {
@@ -51,43 +46,28 @@
       document.body.appendChild(iframeContainer);
     }
 
-    // Event listener for user click
-    document.addEventListener('click', function() {
-      userClicked = true;
-      createIframe();
-    });
+    // Display the notice
+    var noticeElement = document.getElementById("notice");
+    noticeElement.style.display = "block";
 
-    // Set up the timer
+    // Wait for the specified duration before creating the iframe
     setTimeout(function() {
-      if (!userClicked) {
-        // Hide the notice after the specified duration
-        document.getElementById("notice").style.display = "none";
-        setTimeout(function() {
-          if (!userClicked) {
-            createIframe();
-          }
-        }, rickrollDelay);
-      }
-    }, delayTime);
+      createIframe();
+    }, noticeDuration);
 
-    // Reset the website after each visit
-    window.addEventListener('beforeunload', function() {
-      userClicked = false;
+    // Disable clicking
+    document.addEventListener('click', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
     });
   </script>
 </head>
 <body>
   <div class="container">
     <img class="google-logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
-    <h1 id="notice">Redirect Notice</h1>
+    <h1 id="notice" style="display: none;">Redirect Notice</h1>
     <p>The webpage you are trying to visit is no longer available.</p>
-    <p>Click anywhere on this page to continue.</p>
   </div>
-
-  <video autoplay loop width="100%">
-    <source src="rickroll.mp4" type="video/mp4">
-    Sorry, your browser doesn't support embedded videos.
-  </video>
 
   <script>
     // Change the variables below to your liking
