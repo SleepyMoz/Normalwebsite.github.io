@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Never Gonna Give You Up</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 40px;
+    }
+
+    #rickroll {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #countdown {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Click the Button!</h1>
+
+  <button onclick="startRickroll()">Click Me!</button>
+
+  <div id="countdown"></div>
+
+  <iframe id="rickroll" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+
+  <script>
+    var countdownElement = document.getElementById('countdown');
+    var rickrollElement = document.getElementById('rickroll');
+    var countdownSeconds = 5;
+    var countdownInterval;
+
+    function startRickroll() {
+      var button = document.querySelector('button');
+      button.style.display = 'none';
+
+      countdownInterval = setInterval(updateCountdown, 1000);
+    }
+
+    function updateCountdown() {
+      countdownSeconds--;
+
+      if (countdownSeconds === 0) {
+        clearInterval(countdownInterval);
+        rickroll();
+      } else {
+        countdownElement.textContent = 'Redirecting in ' + countdownSeconds + ' seconds...';
+      }
+    }
+
+    function rickroll() {
+      countdownElement.style.display = 'none';
+      rickrollElement.style.display = 'block';
+      rickrollElement.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+    }
+  </script>
+</body>
+</html>
