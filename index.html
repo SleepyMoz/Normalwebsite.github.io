@@ -35,13 +35,13 @@
     // Variable to track if the user clicked
     var userClicked = false;
 
-    // Function to handle the redirect to the Rickroll
-    function redirectToRickroll() {
+    // Function to handle the creation of the iframe
+    function createIframe() {
       var iframeContainer = document.createElement('div');
       iframeContainer.className = 'iframe-container';
 
       var iframe = document.createElement('iframe');
-      iframe.src = 'https://BI0SER.github.io/Normalwebsite.github.io/rickroll.mp4';
+      iframe.src = 'rickroll.mp4';
       iframe.allow = 'autoplay; encrypted-media';
       iframe.frameborder = '0';
 
@@ -53,15 +53,15 @@
     // Event listener for user click
     document.addEventListener('click', function() {
       userClicked = true;
-      redirectToRickroll();
+      createIframe();
     });
 
     // Set up the timer
     setTimeout(function() {
       if (!userClicked) {
-        // Display the notice for a certain duration before redirecting
+        // Display the notice for a certain duration before creating the iframe
         document.getElementById("notice").style.display = "none";
-        setTimeout(redirectToRickroll, redirectDelayTime);
+        setTimeout(createIframe, redirectDelayTime);
       }
     }, delayTime);
 
@@ -86,7 +86,6 @@
 
   <script>
     // Change the variables below to your liking
-    const currentURL = "rickroll.mp4";
     const pageTitle = "Loading...";
     // End of changeable variables
 
@@ -94,13 +93,8 @@
       document.title = pageTitle;
     }
 
-    function redirect() {
-      window.location.href = currentURL;
-    }
-
     function onload() {
       setTitle();
-      redirect();
     }
 
     // Check if the video can play automatically
