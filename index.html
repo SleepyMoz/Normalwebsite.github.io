@@ -26,15 +26,6 @@
       height: 100%;
       border: none;
     }
-
-    .play-button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
   </style>
   <script>
     // Set the countdown duration in seconds
@@ -71,12 +62,6 @@
     function initializePage() {
       setTimeout(displayNotice, noticeDuration);
     }
-
-    // Play the video when the play button is clicked
-    function playVideo() {
-      var video = document.getElementById('rickroll-video');
-      video.play();
-    }
   </script>
 </head>
 <body onload="initializePage()">
@@ -84,12 +69,6 @@
     <img class="google-logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
     <h1 id="notice" style="display: none;">404 NOT FOUND</h1>
     <p>The webpage was not found redirecting back to Google in <span id="countdown">3</span> seconds.</p>
-    <video id="rickroll-video" autoplay loop width="100%">
-      <source src="rickroll_medium.mp4" type="video/mp4" quality="medium">
-      <source src="rickroll_medium.webm" type="video/webm" quality="medium">
-      <p>Sorry, your browser doesn't support autoplay.</p>
-    </video>
-    <button class="play-button" onclick="playVideo()">Play</button>
   </div>
 
   <script>
