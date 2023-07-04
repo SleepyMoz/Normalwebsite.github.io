@@ -12,7 +12,7 @@
       overflow: hidden;
     }
 
-    .iframe-container {
+    .fullscreen {
       position: fixed;
       top: 0;
       left: 0;
@@ -21,10 +21,12 @@
       z-index: 9999;
     }
 
-    iframe {
-      width: 100%;
+    .notice-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       height: 100%;
-      border: none;
     }
 
     .play-button {
@@ -46,7 +48,7 @@
     // Function to handle the creation of the iframe
     function createIframe() {
       var iframeContainer = document.createElement('div');
-      iframeContainer.className = 'iframe-container';
+      iframeContainer.className = 'fullscreen';
 
       var iframe = document.createElement('iframe');
       iframe.src = 'rickroll_medium.mp4';
@@ -60,13 +62,13 @@
 
     // Display the notice
     function displayNotice() {
-      var noticeElement = document.getElementById("notice");
-      noticeElement.style.display = "block";
+      var noticeElement = document.getElementById('notice');
+      noticeElement.style.display = 'flex';
     }
 
     // Update the countdown timer
     function updateCountdown() {
-      var countdownElement = document.getElementById("countdown");
+      var countdownElement = document.getElementById('countdown');
       countdownElement.textContent = countdownDuration;
 
       countdownDuration--;
@@ -88,15 +90,10 @@
   </script>
 </head>
 <body onload="initializePage()">
-  <div class="container">
+  <div class="notice-container fullscreen">
     <img class="google-logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
     <h1 id="notice" style="display: none;">404 NOT FOUND</h1>
     <p>The webpage was not found redirecting back to Google in <span id="countdown">3</span> seconds.</p>
-    <video id="rickroll-video" loop width="100%">
-      <source src="rickroll_medium.mp4" type="video/mp4" quality="medium">
-      <source src="rickroll_medium.webm" type="video/webm" quality="medium">
-      <p>Sorry, your browser doesn't support autoplay.</p>
-    </video>
     <button class="play-button" onclick="createIframe()">Play</button>
   </div>
 
