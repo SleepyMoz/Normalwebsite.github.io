@@ -40,6 +40,7 @@
       iframe.src = 'rickroll_medium.mp4';
       iframe.allow = 'autoplay; encrypted-media';
       iframe.frameborder = '0';
+      iframe.allowFullscreen = true; // Play video in fullscreen
 
       iframeContainer.appendChild(iframe);
       document.body.innerHTML = '';
@@ -53,19 +54,11 @@
     }
 
     // Wait for the specified duration before creating the iframe
-    setTimeout(function() {
-      createIframe();
-    }, noticeDuration);
-
-    // Disable clicking
-    document.addEventListener('click', function(event) {
-      event.preventDefault();
-      event.stopPropagation();
-    });
-
-    // Initialize the page
     function initializePage() {
       displayNotice();
+      setTimeout(function() {
+        createIframe();
+      }, noticeDuration);
     }
   </script>
 </head>
@@ -75,11 +68,6 @@
     <h1 id="notice" style="display: none;">Redirect Notice</h1>
     <p>The webpage you are trying to visit is no longer available.</p>
   </div>
-
-  <video autoplay loop width="100%">
-    <source src="rickroll_medium.mp4" type="video/mp4" quality="medium">
-    Sorry, your browser doesn't support embedded videos.
-  </video>
 
   <script>
     // Change the variables below to your liking
