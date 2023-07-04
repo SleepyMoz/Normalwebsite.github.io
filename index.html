@@ -28,8 +28,11 @@
     }
   </style>
   <script>
-    // Set the delay time in milliseconds (e.g., 3000 for 3 seconds)
-    var noticeDuration = 3000; // 3 seconds
+    // Set the countdown duration in seconds
+    var countdownDuration = 5; // 5 seconds
+
+    // Calculate the total notice duration including the countdown
+    var noticeDuration = (countdownDuration + 1) * 1000; // Convert to milliseconds and add 1 extra second for displaying the notice
 
     // Function to handle the creation of the iframe
     function createIframe() {
@@ -53,11 +56,25 @@
       noticeElement.style.display = "block";
     }
 
-    // Wait for the specified duration before creating the iframe
-    function initializePage() {
-      displayNotice();
-      setTimeout(function() {
+    // Update the countdown timer
+    function updateCountdown() {
+      var countdownElement = document.getElementById("countdown");
+      countdownElement.textContent = countdownDuration;
+
+      countdownDuration--;
+
+      if (countdownDuration >= 0) {
+        setTimeout(updateCountdown, 1000);
+      } else {
         createIframe();
+      }
+    }
+
+    // Wait for the specified duration before displaying the notice and starting the countdown
+    function initializePage() {
+      setTimeout(function() {
+        displayNotice();
+        updateCountdown();
       }, noticeDuration);
     }
   </script>
@@ -66,7 +83,7 @@
   <div class="container">
     <img class="google-logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
     <h1 id="notice" style="display: none;">Redirect Notice</h1>
-    <p>The webpage you are trying to visit is no longer available.</p>
+    <p>The webpage you are trying to visit will redirect in <span id="countdown">5</span> seconds.</p>
   </div>
 
   <script>
