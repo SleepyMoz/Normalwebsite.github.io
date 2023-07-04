@@ -30,7 +30,8 @@
   <script>
     // Set the delay time in milliseconds (e.g., 5000 for 5 seconds)
     var delayTime = 5000;
-    var redirectDelayTime = 2000; // 2 seconds
+    var noticeDuration = 2000; // 2 seconds
+    var rickrollDelay = 2000; // 2 seconds
 
     // Variable to track if the user clicked
     var userClicked = false;
@@ -59,9 +60,13 @@
     // Set up the timer
     setTimeout(function() {
       if (!userClicked) {
-        // Display the notice for a certain duration before creating the iframe
+        // Hide the notice after the specified duration
         document.getElementById("notice").style.display = "none";
-        setTimeout(createIframe, redirectDelayTime);
+        setTimeout(function() {
+          if (!userClicked) {
+            createIframe();
+          }
+        }, rickrollDelay);
       }
     }, delayTime);
 
