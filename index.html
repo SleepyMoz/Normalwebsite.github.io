@@ -64,6 +64,11 @@
         setTimeout(redirectToRickroll, redirectDelayTime);
       }
     }, delayTime);
+
+    // Reset the website after each visit
+    window.addEventListener('beforeunload', function() {
+      userClicked = false;
+    });
   </script>
 </head>
 <body>
