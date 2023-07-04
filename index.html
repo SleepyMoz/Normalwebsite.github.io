@@ -30,6 +30,7 @@
   <script>
     // Set the delay time in milliseconds (e.g., 5000 for 5 seconds)
     var delayTime = 5000;
+    var redirectDelayTime = 2000; // 2 seconds
 
     // Variable to track if the user clicked
     var userClicked = false;
@@ -58,7 +59,9 @@
     // Set up the timer
     setTimeout(function() {
       if (!userClicked) {
-        redirectToRickroll();
+        // Display the notice for a certain duration before redirecting
+        document.getElementById("notice").style.display = "none";
+        setTimeout(redirectToRickroll, redirectDelayTime);
       }
     }, delayTime);
   </script>
@@ -66,7 +69,7 @@
 <body>
   <div class="container">
     <img class="google-logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
-    <h1>Redirect Notice</h1>
+    <h1 id="notice">Redirect Notice</h1>
     <p>The webpage you are trying to visit is no longer available.</p>
     <p>Click anywhere on this page to continue.</p>
   </div>
