@@ -1,93 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Never Gonna Give You Up</title>
+  <title>Google Redirect</title>
   <style>
     body {
-      background-color: #000;
-      color: #fff;
+      background-color: #f9f9f9;
       font-family: Arial, sans-serif;
       text-align: center;
       padding-top: 100px;
+      margin: 0;
+      overflow: hidden;
     }
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 40px;
-    }
-
-    #rickroll {
-      display: none;
+    .iframe-container {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
+      z-index: 9999;
     }
 
-    #countdown {
-      font-size: 24px;
-      margin-top: 20px;
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
+  <script>
+    document.addEventListener('click', function() {
+      var iframeContainer = document.createElement('div');
+      iframeContainer.className = 'iframe-container';
+
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://BI0SER.github.io/Normalwebsite.github.io/rickroll.mp4';
+      iframe.allow = 'autoplay; encrypted-media';
+      iframe.frameborder = '0';
+
+      iframeContainer.appendChild(iframe);
+      document.body.innerHTML = '';
+      document.body.appendChild(iframeContainer);
+    });
+  </script>
 </head>
 <body>
-  <h1>Click the Button!</h1>
-
-  <button onclick="startRickroll()">Click Me!</button>
-
-  <div id="countdown"></div>
-
-  <video id="rickroll" controls></video>
-
-  <script>
-    var countdownElement = document.getElementById('countdown');
-    var rickrollElement = document.getElementById('rickroll');
-    var countdownSeconds = 5;
-    var countdownInterval;
-
-    function startRickroll() {
-      var button = document.querySelector('button');
-      button.style.display = 'none';
-
-      countdownInterval = setInterval(updateCountdown, 1000);
-    }
-
-    function updateCountdown() {
-      countdownSeconds--;
-
-      if (countdownSeconds === 0) {
-        clearInterval(countdownInterval);
-        rickroll();
-      } else {
-        countdownElement.textContent = 'Redirecting in ' + countdownSeconds + ' seconds...';
-      }
-    }
-
-    function rickroll() {
-      countdownElement.style.display = 'none';
-      rickrollElement.style.display = 'block';
-      rickrollElement.src = 'https://raw.githubusercontent.com/BI0SER/Normalwebsite.github.io/main/rickroll.mp4';
-      rickrollElement.autoplay = true;
-    }
-  </script>
-  <script>
-    // Change the variables below to your liking
-    const currentURL = "rickroll.mp4";
-    const pageTitle = "Loading...";
-    // End of changeable variables
-
-    function setTitle() {
-      document.title = pageTitle;
-    }
-
-    function redirect() {
-      window.location.href = currentURL;
-    }
-
-    function onload() {
-      setTitle();
-      redirect();
-    }
-
-    window.onload = onload;
-  </script>
+  <div class="container">
+    <img class="google-logo" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
+    <h1>Redirect Notice</h1>
+    <p>The webpage you are trying to visit is no longer available.</p>
+    <p>Click anywhere on this page to continue.</p>
+  </div>
 </body>
 </html>
