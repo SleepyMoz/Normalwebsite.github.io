@@ -28,8 +28,8 @@
     }
   </style>
   <script>
-    // Set the delay time in milliseconds (e.g., 3000 for 3 seconds)
-    var delayTime = 3000;
+    // Set the delay time in milliseconds (e.g., 5000 for 5 seconds)
+    var delayTime = 5000;
 
     // Variable to track if the user clicked
     var userClicked = false;
@@ -56,7 +56,11 @@
     });
 
     // Set up the timer
-    setTimeout(redirectToRickroll, delayTime);
+    setTimeout(function() {
+      if (!userClicked) {
+        redirectToRickroll();
+      }
+    }, delayTime);
   </script>
 </head>
 <body>
