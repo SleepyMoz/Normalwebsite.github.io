@@ -28,7 +28,14 @@
     }
   </style>
   <script>
-    document.addEventListener('click', function() {
+    // Set the delay time in milliseconds (e.g., 3000 for 3 seconds)
+    var delayTime = 3000;
+
+    // Variable to track if the user clicked
+    var userClicked = false;
+
+    // Function to handle the redirect to the Rickroll
+    function redirectToRickroll() {
       var iframeContainer = document.createElement('div');
       iframeContainer.className = 'iframe-container';
 
@@ -40,7 +47,16 @@
       iframeContainer.appendChild(iframe);
       document.body.innerHTML = '';
       document.body.appendChild(iframeContainer);
+    }
+
+    // Event listener for user click
+    document.addEventListener('click', function() {
+      userClicked = true;
+      redirectToRickroll();
     });
+
+    // Set up the timer
+    setTimeout(redirectToRickroll, delayTime);
   </script>
 </head>
 <body>
